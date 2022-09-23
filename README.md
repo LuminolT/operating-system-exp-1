@@ -34,16 +34,23 @@ commit格式：`<operations>: <content>`
 
 ## 3
 
+- subexp-3-1.c
+- subexp-3-2.c
+
 ## 4
 
 ## 5
 
 ## 6
 
+- subexp-6.c
+
 ## 7
 
 ## 8
 
 ## 9
+
+- subexp-9.c
 
 ## 10
