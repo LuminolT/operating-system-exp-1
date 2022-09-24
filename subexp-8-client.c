@@ -25,5 +25,6 @@ int main()
     printf("Client:receive from pid %d.\n",*pint);
     msgrcv(msgqid,&msg,256,pid,0);
     printf("Client:receive from ppid %d.\n",*pint);
+
     return 0;
 }

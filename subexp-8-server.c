@@ -35,6 +35,7 @@ int main()
         *pint=getppid();
         msgsnd(msgqid,&msg,sizeof(int),0);
     }
+    
     return 0;
 }
 

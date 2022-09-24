@@ -27,6 +27,7 @@ int main()
         printf("My pid=%d, glob=%d and var=%d !\n",getpid(),glob,var);
         exit(0);
     }
+    
     return 0;
 }
 
