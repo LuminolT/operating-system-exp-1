@@ -1,36 +1,31 @@
-#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <wait.h>
-int glob=5;
-int main()
-{
-    int var=15;
-    pid_t fpid=fork();
-    if (fpid<0)
-    {
+
+int glob = 5;
+
+int main() {
+    int var = 15;
+    pid_t fpid = fork();
+    if (fpid < 0) {
         printf("fork error!\n");
         exit(0);
-    }
-    else if(fpid==0)
-    {
+    } else if (fpid == 0) {
         glob++;
         var--;
-        printf("Child %d have changed the var and glob value!\n",getpid());
-        printf("My pid=%d, glob=%d and var=%d !\n",getpid(),glob,var);
+        printf("Child %d have changed the var and glob value!\n", getpid());
+        printf("My pid=%d, glob=%d and var=%d !\n", getpid(), glob, var);
         exit(0);
-    }
-    else
-    {
+    } else {
         wait(0);
-        printf("Parent %d did not changed the var and glob values.\n",getpid());
-        printf("My pid=%d, glob=%d and var=%d !\n",getpid(),glob,var);
+        printf("Parent %d did not changed the var and glob values.\n", getpid());
+        printf("My pid=%d, glob=%d and var=%d !\n", getpid(), glob, var);
         exit(0);
     }
-    
+
     return 0;
 }
-
 
 /*
 思考题

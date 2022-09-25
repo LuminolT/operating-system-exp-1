@@ -1,35 +1,32 @@
-#include<unistd.h>
-#include<stdio.h>
-//#include<sys/types.h>
-//#include<sys/stat.h>
-#include<stdlib.h>
-#include<signal.h>
+#include <stdio.h>
+#include <unistd.h>
 
-void * func()
-{
-	int m;
-	m=getpid();
-	printf("I am Process %d: It is signal 18 processing function.\n",m);
+// #include<sys/types.h>
+// #include<sys/stat.h>
+#include <signal.h>
+#include <stdlib.h>
+
+void *func() {
+    int m;
+    m = getpid();
+    printf("I am Process %d: It is signal 18 processing function.\n", m);
 }
 
-
 int main() {
-	int i,j,k;
-	signal(18,func());
-	while((i=fork())==-1);
-	if(i==0)
-	{
-//		sleep(1000);
-		printf("Child %d: A signal from my parent is received.\n",getpid());
-	}
-	else
-	{
-		j=kill(i,18);
-		printf("Parent: signal 18 has been sent to child %d,returned %d.\n",i,j);
-		k=waitpid(i,NULL,WNOHANG);
-		printf("After wait %d,Parent %d: finished.\n",k,getpid());
-		exit(0);
-	}
+    int i, j, k;
+    signal(18, func());
+    while ((i = fork()) == -1)
+        ;
+    if (i == 0) {
+        //		sleep(1000);
+        printf("Child %d: A signal from my parent is received.\n", getpid());
+    } else {
+        j = kill(i, 18);
+        printf("Parent: signal 18 has been sent to child %d,returned %d.\n", i, j);
+        k = waitpid(i, NULL, WNOHANG);
+        printf("After wait %d,Parent %d: finished.\n", k, getpid());
+        exit(0);
+    }
 }
 
 /*
