@@ -13,11 +13,16 @@ struct msgform {
 
 int msgqid;
 
+void *cleanup() {
+    msgctl(msgqid, IPC_RMID, 0);
+    exit(0);
+}
+
 int main() {
     int pid, *pint;
-    extern cleanup();
+    // extern cleanup();
     for (int i = 0; i < 20; i++) {
-        signal(i, cleanup);
+        signal(i, cleanup());
     }
     msgqid = msgget(MSGKEY, 0777 | IPC_CREAT);
     while (1) {
@@ -33,9 +38,4 @@ int main() {
     }
 
     return 0;
-}
-
-cleanup() {
-    msgctl(msgqid, IPC_RMID, 0);
-    exit(0);
 }
