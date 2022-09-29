@@ -18,6 +18,12 @@ commit格式：`<operations>: <content>`
 
 完成后Pull Request到`master`分支
 
+### New Quests
+
+1. subexp10 多缓存 多进程
+2. lockf对锁定管道的效果
+3. 多进程
+
 ### 思考题
 
 ## 1
