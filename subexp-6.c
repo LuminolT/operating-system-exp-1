@@ -30,6 +30,7 @@ int main() {
         while ((p2 = fork()) == -1)
             ;
         if (p2 == 0) {
+            // printf(">>>> %d %d", fd[0], fd[1]);
             sleep(5);
             printf("Child process P2! \n");
             j = getpid();
@@ -56,7 +57,9 @@ int main() {
                 printf("Can't read pipe. \n");
             else
                 printf("Parent %d: %s \n", l, s);
+
             sleep(5);
+
             lockf(fd[1], 1, 0);
             sprintf(buf_send, "Parent process %d is sending message to P2! \n", l);
             write(fd[1], buf_send, 50);

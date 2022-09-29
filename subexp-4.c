@@ -5,6 +5,7 @@
 int main() {
     int child_pid1, child_pid2, child_pid3;
     int pid, status;
+    // printf("%d\n", status);
     setbuf(stdout, NULL);
     child_pid1 = fork();
     /*创建子进程1*/
@@ -29,7 +30,7 @@ int main() {
         exit(3);
         puts("Parent process is waiting for chile process return!");
     }
-    while ((pid = wait(0)) != -1) {
+    while ((pid = wait(&status)) != -1) {
         if (child_pid1 == pid)
             /*若子进程1结束*/
             printf("child process 1 terminated with status %d\n", (status >> 8));

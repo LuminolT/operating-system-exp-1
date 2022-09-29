@@ -3,36 +3,35 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-// int main() {
-//     pid_t pid;
-//     pid = fork();
-//     int info;
-//     int i = wait(&info);
-//     if (pid == 0) {
-//         printf("SOn, pid = %d, %d\n", getpid(), pid);
-//     }
-//     else {
-//         printf("Dad, pid = %d,.%d\n", getpid(), pid);
-//     }
 
-//     printf("%d %d\n", i, info);
-//     return 0;
-// }
 int main() {
-    printf("进程标识：%d\n真实用户标识：%d\n真实组标识: %d\n", getpid(), getuid(), getgid());
-    // int x;
-    // scanf("%d",&x);
-    int i = fork();
-    if (!i)  //是子进程
-    {
-        // sleep(1);
+    printf("Process ID：%d\nUser ID：%d\nGroup ID: %d\n", getpid(), getuid(), getgid());
+
+    sleep(1);
+
+    if (fork() == 0) {
         execlp("ls", "ls", (char *)0);
         exit(1);
     }
-    int j = wait(0);
+
+    wait(0);
+
     printf("Do you want to quit?(Y/N)\n");
+
     char option;
-    scanf("%c", &option);
-    if (option == 'y' || option == 'Y')
-        exit(0);
+
+    printf("Process still exist.\n");
+
+    for (;;) {
+        scanf("%c", &option);
+
+        getchar();
+
+        if (option == 'y' || option == 'Y') {
+            exit(0);
+        }
+
+        printf("Process still exist.\n");
+        printf("%d", getpid());
+    }
 }

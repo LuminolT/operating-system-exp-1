@@ -7,7 +7,7 @@ int main() {
     int i;
     pid_t fpid = fork();
     if (fpid) {
-        i = wait(0);
+        i = wait(0);  // Wait for sub-process to exit
         printf("It is parent process.\n");
         printf("My pid is %d, ppid is %d.\n", getpid(), getppid());
         printf("The child process, ID number%d, is finished.\n", i);

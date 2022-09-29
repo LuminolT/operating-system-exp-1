@@ -12,6 +12,7 @@ int main() {
         if (fork() == 0)
             printf("%d pid=%d ppid=%d\n", i, getpid(), getppid());
         else {
+            // printf(i);
             j = wait(0);
             printf("%d:The chile %d is finished.\n", getpid(), j);
         }
