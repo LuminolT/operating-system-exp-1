@@ -14,7 +14,7 @@ int main() {
         else {
             // printf(i);
             j = wait(0);
-            printf("%d:The chile %d is finished.\n", getpid(), j);
+            printf("%d:The child %d is finished.\n", getpid(), j);
         }
     }
     // int k;

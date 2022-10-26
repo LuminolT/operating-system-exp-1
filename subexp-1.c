@@ -10,7 +10,7 @@ int main() {
     sleep(1);
 
     if (fork() == 0) {
-        execlp("ls", "ls", (char *)0);
+        execlp("echo", "echo", "echo echo");
         exit(1);
     }
 

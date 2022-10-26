@@ -1,27 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/ipc.h>
-#include <sys/msg.h>
-#include <sys/types.h>
-#include <unistd.h>
-#include <wait.h>
-#define MSGKEY 75
-struct msgform {
-    long mtype;
-    char mtext[256];
-} msg;
-
-int msgqid;
-
-void *cleanup() {
-    msgctl(msgqid, IPC_RMID, 0);
-    // exit(0);
-}
-
-int main() {
     int pid, *pint;
-    printf("running");
-    // sleep(5);
+    sleep(5);
     // extern cleanup();
     for (int i = 0; i < 20; i++) {
         signal(i, cleanup());
@@ -29,7 +7,7 @@ int main() {
 
     msgqid = msgget(MSGKEY, 0777 | IPC_CREAT);
 
-    for (;;) {
+    while (1) {
         msgrcv(msgqid, &msg, 256, 1, 0);
         pint = (int *)msg.mtext;
         pid = *pint;
@@ -40,6 +18,3 @@ int main() {
         *pint = getppid();
         msgsnd(msgqid, &msg, sizeof(int), 0);
     }
-
-    return 0;
-}
